@@ -27,6 +27,7 @@ Camera Input → Page Flip Detection → Stable Page Detected → Image Capture 
 * Transfer learning using ResNet50
 
 **Performance:**
+
 Test Accuracy: 96%
 
 Test F1-Score: 96%
