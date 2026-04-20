@@ -22,8 +22,8 @@ Camera Input → Page Flip Detection → Stable Page Detected → Image Capture 
 **Features**
 * Page-Flip Detection Model
 * Binary image classification:
-* Flip
-* NotFlip
+  Flip
+  NotFlip
 * Transfer learning using ResNet50
 
 **Performance:**
