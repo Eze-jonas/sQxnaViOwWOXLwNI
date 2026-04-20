@@ -74,7 +74,7 @@ The system was:
 * Tacotron2
 
 **Web and Deployment**
-* nFlask
+* Flask
 * Docker
 * Docker Hub
 * AWS
