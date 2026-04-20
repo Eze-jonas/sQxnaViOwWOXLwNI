@@ -1,114 +1,95 @@
-#### MonReader: Page Flip Detection using Deep Learning
+**MonReader: AI-Powered Assistive Reading System**
 
-#### Overview
-MonReader is a new mobile document digitization experience for the blind, for researchers and for everyone else in need for fully automatic, highly fast and high-quality document scanning in bulk. It is composed of a mobile app and all the user needs to do is flip pages and everything is handled by MonReader: it detects page flips from low-resolution camera preview and takes a high-resolution picture of the document, recognizing its corners and crops it accordingly, and it dewarps the cropped document to obtain a bird's eye view, sharpens the contrast between the text and the background and finally recognizes the text with formatting kept intact, being further corrected by MonReader's ML powered redactor.
+An end-to-end assistive reading system designed to help visually impaired users convert printed text into speech.
 
+The system combines:
 
-#### Dataset
-The dataset was sourced from an AI and computer vision solutions provider specializing in:
-- Object recognition
-- Motion detection
-- Visual data analysis
+* Computer Vision for page-flip detection
+* OCR for text extraction
+* Text-to-Speech (TTS) for audio generation
+* Cloud Deployment using Docker and AWS
 
-####  Dataset Details
-| Set        | Flip | Not Flip | Total |
-|------------|------|----------|-------|
-| Training   | 1162 | 1230     | 2392  |
-| Test       | 290  | 307      | 597   |
+**Problem**
 
-- Image format: RGB  
-- Resolution: **1920 × 1080 (Full HD)**  
+Capturing text from books while pages are turning can cause blurred images and poor OCR results.
 
-#### Exploratory Data Analysis (EDA)
-- Images are high-resolution RGB images
-- Approximately balanced distribution between classes
-- Suitable for binary classification
+This project addresses that by first detecting whether a page is stable before image capture, then extracting text and converting it into speech.
 
-#### Data Preprocessing
+**Solution Architecture**
 
-#### Augmentation (Training Set)
-- RandomRotation(10)
-- ColorJitter(brightness=0.2, contrast=0.2)
-- GaussianBlur(kernel_size=3)
+Camera Input → Page Flip Detection → Stable Page Detected → Image Capture → OCR (Gemini) → Text Preprocessing → Tacotron2 TTS → Audio Output
 
-#### Transformations
-- Resize
-- Convert to tensor
-- Normalize
+**Features**
+* Page-Flip Detection Model
+* Binary image classification:
+* Flip
+* NotFlip
+* Transfer learning using ResNet50
 
-#### Data Split
-- **90% Training**
-- **10% Validation**
-- Stratified sampling applied
+**Performance:**
+Test Accuracy: 96%
+Test F1-Score: 96%
 
-#### Model Architecture
-
-- Model: **ResNet (Transfer Learning)**
-- Approach: **Feature Extraction**
-  - Backbone frozen
-  - Only final layer trained
-- Task: **Binary Classification (Flip vs Not Flip)**
-
-#### Training Configuration
-
-- Loss Function: **CrossEntropyLoss**
-- Optimizer: **Adam**
-- Learning Rate: **0.001**
-- Epochs: **10**
-- Batch Size: **32**
-
-#### Model Performance
-
-#### Training F1 Score: **97%**
 Confusion Matrix:
-[[1028 17]
-[ 53 1054]]
 
-#### Validation F1 Score: **97%**
-Confusion Matrix:
-[[114 3]
-[ 3 120]]
+    [[280 10]
+    [15 292]]
 
-#### Test F1 Score: **96%**
-Confusion Matrix:
-[[280 10]
-[ 15 292]]
+**OCR–TTS Pipeline**
 
-#### Evaluation Metrics
-- Precision
-- Recall
-- F1-score
-- Accuracy
+Built a modular OCR-to-Speech pipeline with:
 
-The model shows **consistent performance across all datasets**, indicating good generalization and minimal overfitting.
+**OCR Module**
+* Gemini API integration
+* Image-to-text extraction
 
-## Conclusion
-This project demonstrates the effectiveness of transfer learning for image classification tasks. Using a ResNet model as a fixed feature extractor, the system achieved **96% f1 score on unseen test data**.
+**TTS Module**
 
-The model is robust and suitable for real-world deployment in systems like MonReader, where accurate timing of image capture is critical.
+* Text preprocessing
+* Tacotron2 speech generation
+* Audio chunk merging
 
-#### Future Improvements
-- Fine-tune the ResNet backbone for improved performance
-- Increase dataset size for better generalization
-- Apply additional augmentation techniques
-- Evaluate using advanced metrics (ROC-AUC, PR curves)
-- Deploy in a real-time pipeline (e.g., OCR + TTS system)
+**Pipeline Orchestration**
+* Unified OCR + TTS workflow
 
-#### Tech Stack
-- Python
-- PyTorch
-- torchvision
-- NumPy
-- Matplotlib
+**Deployment**
 
-#### Use Cases
-- Automated document scanning
-- OCR preprocessing pipelines
-- Assistive reading systems
-- Smart cameras for document capture
+The system was:
 
-#### Project Status
-Completed  
-Ready for deployment / integration  
+* Tested locally
+* Containerized using Docker
+* Pushed to Docker Hub
+* Deployed on AWS
+
+**Tech Stack**
+* Machine Learning
+* Python
+* PyTorch
+* ResNet50
+* Transfer Learning
+* OCR and Speech
+* Gemini API
+* Tacotron2
+
+**Web and Deployment**
+*Flask
+*Docker
+*Docker Hub
+*AWS
+
+**Results**
+
+* Developed an integrated AI pipeline for assistive reading
+* Achieved strong image classification performance
+* Built modular OCR-TTS workflow
+* Deployed a production-ready containerized application
+
+**Future Improvements**
+* Fine-tune ResNet backbone
+* Improve OCR robustness
+* Reduce TTS latency
+* Add multilingual support
+* Add load balancing and monitoring
+* Integrate the pipeline into a full MonReader assistive reading device
 
 
