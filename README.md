@@ -28,6 +28,7 @@ Camera Input → Page Flip Detection → Stable Page Detected → Image Capture 
 
 **Performance:**
 Test Accuracy: 96%
+
 Test F1-Score: 96%
 
 Confusion Matrix:
