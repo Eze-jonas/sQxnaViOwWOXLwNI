@@ -74,10 +74,10 @@ The system was:
 * Tacotron2
 
 **Web and Deployment**
-*Flask
-*Docker
-*Docker Hub
-*AWS
+* nFlask
+* Docker
+* Docker Hub
+* AWS
 
 **Results**
 
