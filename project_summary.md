@@ -250,6 +250,36 @@ The Flask application was:
 * Pushed to Docker Hub
 * Deployed on AWS for production use
 
+  **How to Run the Flask Application**
+
+The application is deployed on an AWS EC2 virtual machine and accessed remotely via SSH.
+
+1. Connect to the EC2 instance via SSH
+
+**ssh -i "C:\Users\USER\Music\ocr_tts_pem\ocr_tts_key.pem" ubuntu@13.62.18.160**
+
+2. (One-time setup) Add user to Docker group
+
+This allows running Docker commands without sudo:
+
+**sudo usermod -aG docker ubuntu**
+
+Then refresh group permissions:
+
+**newgrp docker**
+
+3. Start the Docker container
+
+**docker start ocr_app**
+
+4. Access the application in a browser
+
+Open the following URL:
+
+**http://<EC2_PUBLIC_IP>:80**
+
+This loads the web interface where an image can be uploaded for OCR and TTS processing.
+
 **project 2 Conclusion**
 
 This project demonstrated the development of a complete OCR–TTS pipeline capable of extracting text from images and converting it into speech.
